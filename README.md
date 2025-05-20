@@ -19,7 +19,7 @@ A loading page in which the user is prompted to interact before moving on to the
 
 ## **Technologies Used**
 
-HTML, CSS, JAVASCRIPT, Node JS server, Glitch (It's glitchy), MongoDB Atlas, SVGs from W3, Animations with keyframes
+HTML, CSS, JAVASCRIPT, Node JS server, Glitch (It's glitchy), MongoDB Atlas, SVGs from W3, Animations with keyframes, Fonts from Google
 
 ## **Future Enhancements**
 
