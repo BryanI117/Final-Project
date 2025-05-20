@@ -2,7 +2,7 @@
 # MEDP 33100 Project 2: Data Visualization
 ## **Project Members**
 
-Bryan Iturbide
+Me, myself and I, Bryan Iturbide
 
 ## **Link to Live Page**
 
