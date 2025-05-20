@@ -1,31 +1,36 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/SwTV4Aya)
 # MEDP 33100 Project 2: Data Visualization
 ## **Project Members**
-
-Me, myself and I, Bryan Iturbide
+- Anika Rahman
+- Bryan Iturbide
 
 ## **Link to Live Page**
 
-Still working on it
+[Glitch](https://trusting-glowing-salmon.glitch.me/)
 
 ## **Project Overview**
 
-My project is based around the summer theme, in which people anonymously place their submissions into a public archive of their plans! So the format that I wanted to follow was one in which it’s a postcard submission format in which has been changed to be as interactive as possible. Each submission should include a small animation for when these submissions are placed and stored it so it can be showcased for others to see. 
-
+This project compiles popular quotes from popular characters on the American television show The Office. The project uses data from a pre-existing API and categorizes quotes by character. Users are also able to see a breakdown of the data in the form of a pie chart, search for quotes using keywords and sort from A-Z and Z-A. 
 
 ## **Features**
 
-A loading page in which the user is prompted to interact before moving on to the next part of the assignment. Another feature would be the postcard interaction, where animations and design are taken into account when the user is prompted to put their response in. Finally, the information and data is stored for everyone to see as its displayed on the main page. 
+Some features used throughout the project include a sortation method for all quotes alphabetically and quotes from specific characters with their designated button to showcase.
 
 ## **Technologies Used**
 
-HTML, CSS, JAVASCRIPT, Node JS server, Glitch (It's glitchy), MongoDB Atlas, SVGs from W3, Animations with keyframes, Fonts from Google
+- HTML, CSS, JavaScript 
+- Express for server-side setup
+- Handlebars
+- Node.js
+- [The Office Quotes API](https://officeapi.akashrajpurohit.com)
+- Glitch
 
 ## **Future Enhancements**
 
-Future enhancements I would add in the future would be including a more complete page in which there are more features for the user to have at their disposal for more interactivity. Perhaps creating more animations and even sound effects so the user can be immersed.
+- We would like to include the episode titles and air dates for each quote.
+- Another future enhancement that can be added would be specific themes based on which character is picked to showcase the differences between them
+- Find a way to optimize how the quotes are being rendered as there is a slight loading delay upon entering the website for the first time. 
 
 ## **Credits**
-
-SVGs from W3, W3 schools, MDN Web docs, Gemini from Google for assisting in the upload to ,Glitch but clearly AI isn't the best for that at all, 
-
+- [The Office Quotes API](https://officeapi.akashrajpurohit.com)
+- [American Typewriter Font](https://github.com/tuzz/themakingcollective.com/blob/master/app/assets/fonts/american-typewriter.ttf)
+- Images Sourced from The Office
