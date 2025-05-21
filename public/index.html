@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summer Plans Boardwalk! ☀️🌙</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body class="overflow-hidden bg-sky-100 day-mode">
+
+    <div id="loadingScreen" class="fixed inset-0 bg-sky-400 flex flex-col items-center justify-center z-50 transition-opacity duration-1000ms ease-in-out cursor-default">
+        <div class="boardwalk-bg absolute inset-0">
+            <div id="loadingSunOrMoon" class="sun"></div>
+            <div id="starsContainer" class="stars-container"></div>
+            <div id="loadingCloud1" class="cloud cloud1"></div>
+            <div id="loadingCloud2" class="cloud cloud2"></div>
+            <div id="loadingCloud3" class="cloud cloud3"></div>
+            <div class="wave wave1"></div>
+            <div class="wave wave2"></div>
+            <div class="wave wave3"></div>
+        </div>
+        <div class="relative z-10 text-center p-8 bg-white/80 dark:bg-slate-800/80 backdrop-blur-lg rounded-xl shadow-2xl">
+            <h1 class="text-4xl md:text-5xl font-bold text-amber-600 dark:text-sky-400 mb-4 animate-pulse loading-title">Summer Boardwalk</h1>
+            <p class="text-lg text-gray-700 dark:text-gray-300 mb-6">What adventures await?</p>
+            <div id="interactivePrompt" class="interactive-area cursor-pointer p-4 rounded-lg hover:bg-amber-100 dark:hover:bg-sky-700 transition-colors group">
+                <p class="text-xl text-amber-700 dark:text-sky-300 font-semibold group-hover:scale-105 transition-transform">Click or Press any Key to Stroll In!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed top-4 right-4 z-[60] flex space-x-3">
+        <button id="themeToggleBtn" class="ui-toggle-btn bg-white/70 dark:bg-slate-700/70 text-slate-600 dark:text-slate-300 hover:bg-amber-100 dark:hover:bg-sky-600 p-3 rounded-full shadow-md transition-all" aria-label="Toggle Theme">
+            <i class="fas fa-moon"></i> </button>
+    </div>
+
+    <main id="mainContent" class="hidden min-h-screen bg-amber-50 dark:bg-slate-900 py-8 px-4 transition-opacity duration-1000ms ease-in-out">
+        <div class="container mx-auto max-w-5xl pt-16">
+
+            <header class="text-center mb-12 relative">
+                <button id="returnToBoardwalkBtn" class="absolute top-[-20px] left-0 ui-toggle-btn bg-white/70 dark:bg-slate-700/70 text-slate-600 dark:text-slate-300 hover:bg-amber-100 dark:hover:bg-sky-600 p-2 px-4 rounded-lg shadow-md transition-all text-sm">
+                    <i class="fas fa-arrow-left mr-2"></i>Back to Boardwalk
+                </button>
+                <h1 class="text-5xl md:text-6xl font-bold text-amber-700 dark:text-sky-300 drop-shadow-lg main-title">My Summer Plans Archive</h1>
+                <p id="entriesCounter" class="text-xl text-gray-600 dark:text-gray-400 mt-3">Sharing summer dreams...</p>
+            </header>
+
+            <section id="summerPostcard" class="mb-16 p-6 md:p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-xl transform transition-all duration-500 hover:shadow-2xl relative overflow-hidden postcard-input-section">
+                <div class="postcard-decoration">
+                    <i id="inputStamp" class="fas fa-sun text-yellow-400 postcard-stamp text-6xl"></i>
+                    <div class="postcard-lines dark:border-slate-600"></div>
+                </div>
+                <i class="fas fa-umbrella-beach decorative-beach-item decorative-umbrella text-sky-500 dark:text-sky-400"></i>
+                <i class="fas fa-crab decorative-beach-item decorative-crab text-red-500 dark:text-red-400"></i>
+                <i class="fas fa-fish decorative-beach-item decorative-fish text-orange-400 dark:text-orange-300"></i>
+
+                <h2 class="text-3xl font-semibold text-amber-600 dark:text-sky-400 mb-6 relative z-10">Send a Postcard from Your Future Summer!</h2>
+                <form id="entryForm" class="relative z-10 space-y-6">
+                    <div>
+                        <label for="entryText" class="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">Your amazing summer plan:</label>
+                        <textarea id="entryText" name="entryText" rows="5" required
+                                  class="w-full p-4 border-2 border-amber-300 dark:border-sky-700 rounded-lg shadow-sm focus:ring-2 focus:ring-amber-500 dark:focus:ring-sky-500 focus:border-amber-500 dark:focus:border-sky-500 transition-all text-lg postcard-textarea cursor-pencil bg-white dark:bg-slate-700 dark:text-gray-200"
+                                  placeholder="e.g., Stargaze on a remote beach, learn to make perfect lemonade, write a short story..."></textarea>
+                    </div>
+                    <div class="stamp-selector-container mt-4">
+                        <p class="text-md font-medium text-gray-700 dark:text-gray-300 mb-2">Choose your postcard stamp:</p>
+                        <div id="stampSelector" class="flex space-x-3 items-center justify-center flex-wrap">
+                            <button type="button" class="stamp-choice selected-stamp" data-stamp-class="fa-sun text-yellow-400" aria-label="Sun stamp"><i class="fas fa-sun text-3xl text-yellow-400"></i></button>
+                            <button type="button" class="stamp-choice" data-stamp-class="fa-umbrella-beach text-sky-500" aria-label="Beach umbrella stamp"><i class="fas fa-umbrella-beach text-3xl text-sky-500"></i></button>
+                            <button type="button" class="stamp-choice" data-stamp-class="fa-martini-glass-citrus text-lime-500" aria-label="Drink stamp"><i class="fas fa-martini-glass-citrus text-3xl text-lime-500"></i></button>
+                            <button type="button" class="stamp-choice" data-stamp-class="fa-anchor text-slate-600 dark:text-slate-400" aria-label="Anchor stamp"><i class="fas fa-anchor text-3xl text-slate-600 dark:text-slate-400"></i></button>
+                            <button type="button" class="stamp-choice" data-stamp-class="fa-plane text-blue-500" aria-label="Plane stamp"><i class="fas fa-plane text-3xl text-blue-500"></i></button>
+                        </div>
+                    </div>
+                    <button type="submit"
+                            class="submit-btn w-full md:w-auto py-3 px-8 bg-orange-500 text-white rounded-lg font-semibold text-lg shadow-md hover:bg-orange-600 dark:bg-sky-600 dark:hover:bg-sky-500 focus:outline-none focus:ring-2 focus:ring-orange-500 dark:focus:ring-sky-500 focus:ring-opacity-75 transition-all duration-300 ease-in-out transform hover:scale-105">
+                        <i class="fas fa-paper-plane mr-2"></i>Mail My Postcard!
+                    </button>
+                </form>
+                <div id="formMessage" class="mt-4 text-md text-center"></div>
+            </section>
+
+            <section id="recentPostcardsGallery" class="pb-8">
+                <div class="flex flex-col sm:flex-row justify-between items-center mb-10">
+                    <h2 class="text-4xl font-semibold text-sky-600 dark:text-teal-400 gallery-title text-center sm:text-left mb-4 sm:mb-0">Postcards from the Edge of Summer</h2>
+                    <button id="surpriseMeBtn" class="surprise-btn py-2 px-6 bg-pink-500 text-white rounded-lg font-semibold shadow-md hover:bg-pink-600 dark:bg-purple-600 dark:hover:bg-purple-500 transition-all transform hover:scale-105 cursor-sun">
+                        <i class="fas fa-gift mr-2"></i>Surprise Me!
+                    </button>
+                </div>
+                <div id="loadingEntries" class="text-center text-gray-500 dark:text-gray-400 py-6 text-lg">
+                    <i class="fas fa-spinner fa-spin text-3xl mr-2"></i>Fetching the latest postcards...
+                </div>
+                <div id="postcardsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    </div>
+                <div id="noEntriesMessage" class="text-center text-gray-500 dark:text-gray-400 py-6 text-lg hidden">
+                    <i class="fas fa-water text-5xl text-sky-300 dark:text-sky-600 mb-3 animate-wave-gentle"></i>
+                    <p>The beach is quiet... No postcards have washed ashore yet!</p>
+                    <p class="mt-1">Be the first to send your summer dream out to sea!</p>
+                </div>
+            </section>
+        </div>
+
+        <div id="postcardFocusModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-60 hidden transition-opacity duration-300">
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-2xl p-6 md:p-8 w-full max-w-lg relative postcard-modal-content transform scale-95 opacity-0 transition-all duration-300">
+                <button id="closeFocusModalBtn" class="absolute top-3 right-3 text-gray-400 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 text-3xl transition-colors z-10">
+                    <i class="fas fa-times-circle"></i>
+                </button>
+                <div id="focusModalContent" class="relative text-gray-800 dark:text-gray-200">
+                    </div>
+            </div>
+        </div>
+
+        <div id="messageInABottleContainer" class="fixed bottom-0 left-1/2 transform -translate-x-1/2 z-70 hidden">
+            <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2280%22%20height%3D%22150%22%20viewBox%3D%220%200%2080%20150%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bottleGradDay%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%220%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20style%3D%22stop-color:rgb(230,245,255);stop-opacity:0.3%22%20/%3E%3Cstop%20offset%3D%2260%25%22%20style%3D%22stop-color:rgb(200,230,250);stop-opacity:0.4%22%20/%3E%3Cstop%20offset%3D%22100%25%22%20style%3D%22stop-color:rgb(180,220,240);stop-opacity:0.5%22%20/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22bottleGradNight%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%220%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20style%3D%22stop-color:rgb(60,70,110);stop-opacity:0.7%22%20/%3E%3Cstop%20offset%3D%22100%25%22%20style%3D%22stop-color:rgb(40,50,90);stop-opacity:0.9%22%20/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath%20class%3D%22bottle-path%22%20d%3D%22M30%2C145%20C15%2C140%2010%2C120%2010%2C100%20L10%2C40%20C10%2C20%2020%2C5%2030%2C5%20L50%2C5%20C60%2C5%2070%2C20%2070%2C40%20L70%2C100%20C70%2C120%2065%2C140%2050%2C145%20L30%2C145%20Z%22%20fill%3D%22url(%23bottleGradDay)%22%20stroke%3D%22%23C0DDE2%22%20stroke-width%3D%221.5%22%20/%3E%3Crect%20x%3D%2228%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2210%22%20fill%3D%22%23D2B48C%22%20stroke%3D%22%238B4513%22%20stroke-width%3D%221%22%20rx%3D%222%22%20/%3E%3Crect%20x%3D%2232%22%20y%3D%2245%22%20width%3D%2216%22%20height%3D%2230%22%20fill%3D%22%23FFF8DC%22%20rx%3D%223%22%20transform%3D%22rotate(10%2040%2060)%22%20/%3E%3Cpath%20d%3D%22M34%2C50%20L46%2C50%20M34%2C55%20L46%2C55%20M34%2C60%20L46%2C60%20M34%2C65%20L46%2C65%22%20stroke%3D%22%23A0A0A0%22%20stroke-width%3D%220.5%22%20/%3E%3C/svg%3E" alt="Message in a bottle" id="messageBottleImg" class="cursor-pointer w-20 h-auto md:w-24 object-contain bottle-image">
+        </div>
+
+        <footer class="text-center mt-16 mb-8 text-gray-500 dark:text-gray-400 text-sm">
+            <p>Summer Boardwalk Archive &copy; <span id="currentYear"></span></p>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
